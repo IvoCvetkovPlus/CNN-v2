@@ -13,7 +13,20 @@ epochs = 100
 data_augmentation = False
 
 #Train/test split 
-
+### encoder_input = layers.Input(
+shape=(32, 32, 1), name = "encoder_input"
+)
+x = layers.Conv2D(32, (3, 3), strides = 2, activation = 'relu', padding="same")(
+encoder_input
+)
+x = layers.Conv2D(64, (3, 3), strides = 2, activation = 'relu', padding="same")
+(x)
+x = layers.Conv2D(128, (3, 3), strides = 2, activation = 'relu', padding="same")
+(x)
+shape_before_flattening = K.int_shape(x)[1:]
+x = layers.Flatten()(x)
+encoder_output = layers.Dense(2, name="encoder_output")(x)
+###encoder = models.Model(encoder_input, encoder_output)
 
 
 (x_train,y_train),(x_test,y_test) = keras.datasets.cifar10.load_data()
